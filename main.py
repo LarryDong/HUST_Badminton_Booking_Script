@@ -3,10 +3,14 @@ import time
 from selenium import webdriver
 from apscheduler.schedulers.blocking import BlockingScheduler
 
+# from webdriver_manager.chrome import ChromeDriverManager
+
 options = webdriver.ChromeOptions()
+# options = webdriver.FirefoxOptions()
+
 # chrome根目录打开命令窗口，执行chrome.exe --remote-debugging-port=9222 --user-data-dir="your directory"，在新窗口登录华中科技大学账号，保持窗口常开
 options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
-driver = webdriver.Chrome(executable_path='C:\Program Files\Google\Chrome\Application\chromedriver.exe',
+driver = webdriver.Firefox(executable_path='C:\Program Files\Google\Chrome\Application\chromedriver.exe',
                           options=options)
 driver.get(url="http://pecg.hust.edu.cn/cggl/front/yuyuexz")
 # 场地号与xpath序号对应关系
@@ -33,6 +37,10 @@ zone_dict = {1: [3, 2],
              19: [6, 5],
              20: [6, 6],
              }
+
+# Select Guanggu GYM
+def select_gym():
+    book_button = driver.find_element_by_xpath('/html/body/div[2]/div[1]/ul/li[1]/div[1]/div[2]/span/a')
 
 
 # 切换窗口
@@ -104,8 +112,9 @@ def execute_booking(duration=3, zone=21):
 
 
 if __name__ == '__main__':
+    print('ording badminton...')
     scheduler = BlockingScheduler(timezone='Asia/Shanghai')
-    scheduler.add_job(execute_booking, 'date', run_date=datetime(2022, 3, 7, 16, 14, 0))
+    scheduler.add_job(execute_booking, 'date', run_date=datetime(2022, 6, 8, 9, 25, 0))
     scheduler.start()
 
 # 场地编号与xpath对应关系
