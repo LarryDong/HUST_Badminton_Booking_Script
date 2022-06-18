@@ -64,8 +64,8 @@ def login():
     select_passport.click()
     select_passport = driver.find_element_by_xpath('/html/body/div[1]/section[2]/div[1]/div/select/option[5]')
     select_passport.click()
-    user_id = driver.find_element_by_xpath('//*[@id="input_idCardNo"]').send_keys('EJ3532196')
-    user_pw = driver.find_element_by_xpath('//*[@id="input_pwd"]').send_keys('yan83132397')
+    user_id = driver.find_element_by_xpath('//*[@id="input_idCardNo"]').send_keys('***')
+    user_pw = driver.find_element_by_xpath('//*[@id="input_pwd"]').send_keys('***')
 
 
 if __name__ == '__main__':
